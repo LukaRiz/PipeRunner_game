@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pipe Runner</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <!-- ==================== MAIN MENU ==================== -->
+    <div id="menuScreen" class="screen">
+        <div class="menu-box pixel-box">
+            <h1 class="game-title">PIPE RUNNER</h1>
+
+            <div class="menu-hero">
+                <canvas id="menuCanvas" width="48" height="36" class="menu-player-canvas"></canvas>
+            </div>
+
+            <button id="btnStart" class="btn btn-primary">START</button>
+
+            <p id="bestScore" class="hud-label">BEST: 0</p>
+        </div>
+    </div>
+
+    <!-- ==================== GAMEPLAY ==================== -->
+    <div id="gameScreen" class="screen hidden">
+        <div class="canvas-wrapper">
+            <canvas id="gameCanvas" width="480" height="270"></canvas>
+        </div>
+
+        <!-- Mobile controls -->
+        <div class="mobile-controls">
+            <button id="btnLeft" class="btn btn-mobile">◀</button>
+            <button id="btnJump" class="btn btn-mobile btn-jump">▲</button>
+            <button id="btnRight" class="btn btn-mobile">▶</button>
+        </div>
+    </div>
+
+    <!-- ==================== GAME OVER ==================== -->
+    <div id="gameOverScreen" class="screen hidden">
+        <div class="menu-box pixel-box">
+            <h2 class="gameover-title">GAME OVER</h2>
+
+            <div class="result-list">
+                <p id="finalScore" class="hud-label">SCORE: 0</p>
+                <p id="finalCoins" class="hud-label">COINS: 00</p>
+                <p id="finalBest"  class="hud-label">BEST: 0</p>
+            </div>
+
+            <div class="btn-group">
+                <button id="btnRestart" class="btn btn-primary">RESTART</button>
+                <button id="btnMenu"    class="btn btn-secondary">MENU</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts — order matters (dependencies first) -->
+    <script src="js/storage.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/obstacles.js"></script>
+    <script src="js/collectibles.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

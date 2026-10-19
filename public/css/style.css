@@ -1,0 +1,240 @@
+/* =====================================================================
+   Pipe Runner — style.css
+   Pixel-art UI, layout, responsive canvas, mobile controls
+   ===================================================================== */
+
+/* ---------- Reset & base ---------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --sky-top:    #5BA3D9;
+    --sky-bottom: #87CEEB;
+    --green-dark: #1B5E20;
+    --green:      #2E7D32;
+    --yellow:     #FFD600;
+    --red:        #B71C1C;
+    --white:      #FFFFFF;
+    --off-white:  #F5F5F5;
+    --shadow:     #222222;
+    --pixel-font: "Courier New", Courier, monospace;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--sky-top);
+    font-family: var(--pixel-font);
+    color: var(--white);
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* ---------- Screens ---------- */
+.screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
+}
+
+.screen.hidden {
+    display: none;
+}
+
+/* ---------- Game canvas ---------- */
+#gameScreen {
+    flex-direction: column;
+    background: var(--sky-bottom);
+}
+
+.canvas-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+}
+
+#gameCanvas {
+    display: block;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    /* width/height set dynamically by JS; max-size fallback */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* ---------- Pixel box (menu / game over panels) ---------- */
+.pixel-box {
+    background: #1a3a1a;
+    border: 4px solid var(--green-dark);
+    outline: 2px solid var(--green);
+    padding: 28px 36px;
+    text-align: center;
+    min-width: 240px;
+    max-width: 360px;
+    width: 90%;
+    box-shadow:
+        6px 6px 0 #000,
+        inset 0 0 0 2px rgba(255,255,255,0.06);
+}
+
+/* ---------- Title ---------- */
+.game-title {
+    font-size: clamp(22px, 5vw, 36px);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    text-shadow: 3px 3px 0 #7B5800, -1px -1px 0 #7B5800;
+    margin-bottom: 18px;
+    line-height: 1.1;
+}
+
+.gameover-title {
+    font-size: clamp(18px, 4vw, 28px);
+    letter-spacing: 3px;
+    color: var(--red);
+    text-shadow: 2px 2px 0 #000;
+    margin-bottom: 16px;
+}
+
+/* ---------- Menu hero ---------- */
+.menu-hero {
+    margin: 0 auto 20px;
+    width: 48px;
+    height: 36px;
+}
+
+.menu-player-canvas {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    width: 96px;   /* 2x scale */
+    height: 72px;
+    margin-left: -24px; /* center the 2x scaled canvas */
+}
+
+/* ---------- HUD labels ---------- */
+.hud-label {
+    font-size: clamp(10px, 2vw, 14px);
+    letter-spacing: 1px;
+    color: var(--off-white);
+    text-shadow: 1px 1px 0 var(--shadow);
+    margin: 4px 0;
+}
+
+.result-list {
+    margin: 8px 0 20px;
+}
+
+.result-list .hud-label {
+    font-size: clamp(12px, 2.5vw, 16px);
+    margin: 6px 0;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    display: inline-block;
+    font-family: var(--pixel-font);
+    font-size: clamp(11px, 2.5vw, 15px);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 9px 22px;
+    transition: transform 0.05s, box-shadow 0.05s;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: none !important;
+}
+
+.btn-primary {
+    background: var(--green);
+    color: var(--white);
+    border: 3px solid var(--green-dark);
+    box-shadow: 3px 3px 0 #000;
+    margin-top: 12px;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background: #388E3C;
+}
+
+.btn-secondary {
+    background: #37474F;
+    color: var(--off-white);
+    border: 3px solid #263238;
+    box-shadow: 3px 3px 0 #000;
+    margin-top: 8px;
+    width: 100%;
+}
+
+.btn-secondary:hover {
+    background: #455A64;
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* ---------- Mobile controls ---------- */
+.mobile-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 6px 16px 10px;
+    gap: 8px;
+    /* Only show on touch devices OR small screens */
+    /* Always rendered; game-logic still works with keyboard */
+}
+
+.btn-mobile {
+    background: rgba(0, 0, 0, 0.35);
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.3);
+    font-size: 20px;
+    padding: 12px 24px;
+    border-radius: 4px;
+    flex: 1;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+}
+
+.btn-jump {
+    background: rgba(30, 100, 30, 0.5);
+    border-color: rgba(100, 200, 100, 0.4);
+}
+
+.btn-mobile:active {
+    background: rgba(255,255,255,0.2);
+    transform: translate(1px, 1px);
+}
+
+/* ---------- Responsive ---------- */
+@media (min-width: 600px) {
+    .mobile-controls {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+}
+
+/* Hide mobile controls on large screens where keyboard is primary */
+@media (hover: hover) and (pointer: fine) and (min-width: 800px) {
+    .mobile-controls {
+        display: none;
+    }
+}
